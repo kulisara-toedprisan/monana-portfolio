@@ -1,0 +1,21 @@
+:root {
+  --ink: #11110f;
+  --ink-soft: #3f403c;
+  --paper: #eeede8;
+  --panel: #d7d8d4;
+  --panel-light: #e5e6e2;
+  --line: rgb(17 17 15 / 16%);
+  --signal: #ff5a18;
+  --signal-light: #ff8a24;
+  --cream: #fffaf0;
+  --white: #fff;
+  --font-display: "Arial Narrow", "Roboto Condensed", Arial, sans-serif;
+  --font-body: Inter, "Avenir Next", "Segoe UI", "Helvetica Neue", sans-serif;
+  --font-mono: "Courier New", "Lucida Console", monospace;
+  --gutter: clamp(0.75rem, 4vw, 4.5rem);
+  --section-space: clamp(5rem, 10vw, 10rem);
+  --radius-sm: 0.4rem;
+  --radius-md: 0.9rem;
+  --radius-lg: 1.4rem;
+  --max-width: 100rem;
+}
