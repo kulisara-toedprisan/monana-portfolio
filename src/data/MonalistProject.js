@@ -54,7 +54,7 @@ const monalistProjects = [
   },
   {
     id: 'long-01',
-    title: 'Toronto's Christmas Market Vibes',
+    title: 'Toronto\'s Christmas Market Vibes',
     category: 'longform',
     platform: 'youtube',
     mediaType: 'youtube',
@@ -64,7 +64,7 @@ const monalistProjects = [
     videoId: '5Em9WTC7-u4',
     embedUrl: 'https://www.youtube.com/embed/5Em9WTC7-u4',
     videoSrc: '',
-    description: 'A festive travel vlog exploring Toronto's Christmas Market — food, atmosphere, and little comedic beats woven into the storytelling, set to seasonal music that keeps the mood warm and playful.',
+    description: 'A festive travel vlog exploring Toronto\'s Christmas Market — food, atmosphere, and little comedic beats woven into the storytelling, set to seasonal music that keeps the mood warm and playful.',
     software: ['CapCut','Adobe Premiere Pro'],
     tools: ['Talking-head intro', 'B-roll storytelling', 'Comedic timing', 'Music/sound design', 'Pacing'],
   },
