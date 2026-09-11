@@ -1,6 +1,5 @@
 import { ArrowUpRight } from 'lucide-react'
 import { LandingSection } from './components/landing/LandingSection'
-import { SideNavigation } from './components/landing/SideNavigation'
 import { ContactLinks } from './components/landing/ContactMenu'
 import { AboutSection } from './components/about/AboutSection'
 import { ProjectsSection } from './components/projects/ProjectsSection'
@@ -11,7 +10,6 @@ function App() {
   const activeSection = useActiveSection()
   return <>
     <a className="skip-link" href="#about">Skip to content</a>
-    <SideNavigation activeSection={activeSection} />
     <main id="main">
       <LandingSection activeSection={activeSection} />
       <AboutSection active={activeSection === 'about'} />

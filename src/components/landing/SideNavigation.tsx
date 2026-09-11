@@ -1,12 +1,12 @@
 import { Moon, Sun } from 'lucide-react'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { navigation } from '../../data/content'
 import { ContactMenu } from './ContactMenu'
 
 const workItems = [
   { label: 'STORYTELLING', href: '#storytelling' },
-  { label: 'PRODUCT', href: '#product' },
   { label: 'LONG FORM', href: '#longform' },
+  { label: 'PRODUCT', href: '#product' },
 ]
 
 export function SideNavigation({ activeSection }: { activeSection: string }) {
@@ -15,11 +15,34 @@ export function SideNavigation({ activeSection }: { activeSection: string }) {
     return window.localStorage.getItem('monalist-theme') === 'dark' ? 'dark' : 'light'
   })
   const [workOpen, setWorkOpen] = useState(false)
+  const workCloseTimer = useRef<number | null>(null)
+
+  const cancelWorkClose = () => {
+    if (workCloseTimer.current !== null) {
+      window.clearTimeout(workCloseTimer.current)
+      workCloseTimer.current = null
+    }
+  }
+
+  const openWork = () => {
+    cancelWorkClose()
+    setWorkOpen(true)
+  }
+
+  const closeWorkSoon = () => {
+    cancelWorkClose()
+    workCloseTimer.current = window.setTimeout(() => {
+      setWorkOpen(false)
+      workCloseTimer.current = null
+    }, 350)
+  }
 
   useEffect(() => {
     document.documentElement.dataset.theme = theme
     window.localStorage.setItem('monalist-theme', theme)
   }, [theme])
+
+  useEffect(() => () => cancelWorkClose(), [])
 
   const sectionTone = (() => {
     const darkSections = new Set(['about', 'contact'])
@@ -34,7 +57,7 @@ export function SideNavigation({ activeSection }: { activeSection: string }) {
       <a key={item.href} href={item.href} aria-current={item.href === '#' + activeSection ? 'location' : undefined}>{item.label}</a>
     ))}
 
-    <div className="work-nav" onMouseEnter={() => setWorkOpen(true)} onMouseLeave={() => setWorkOpen(false)} onFocus={() => setWorkOpen(true)} onBlur={(event) => {
+    <div className="work-nav" onMouseEnter={openWork} onMouseLeave={closeWorkSoon} onFocus={openWork} onBlur={(event) => {
       if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setWorkOpen(false)
     }}>
       <button
@@ -48,7 +71,7 @@ export function SideNavigation({ activeSection }: { activeSection: string }) {
       >
         WORK
       </button>
-      <div id="work-submenu" className={`work-submenu${workOpen ? ' is-open' : ''}`} role="menu" aria-label="Work categories">
+      <div id="work-submenu" className={`work-submenu${workOpen ? ' is-open' : ''}`} role="menu" aria-label="Work categories" onMouseEnter={cancelWorkClose}>
         {workItems.map((item) => (
           <a key={item.href} href={item.href} role="menuitem" aria-current={item.href === '#' + activeSection ? 'location' : undefined} onClick={() => setWorkOpen(false)}>{item.label}</a>
         ))}

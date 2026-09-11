@@ -43,6 +43,7 @@
   .side-nav > a, .contact-trigger, .theme-toggle { font-size: 14px; padding-inline: 6px; background: transparent; }
   .side-nav > a { gap: 4px; }
   .side-nav > a[aria-current]::before, .side-nav > a:hover::before { width: 8px; }
+  .work-submenu { top: auto; bottom: 100%; padding-bottom: 8px; }
   .contact-menu { top: auto; bottom: 100%; right: 0; }
   .landing-footer { bottom: 24px; }
   .landing-footer p { font-size: 13px; }
