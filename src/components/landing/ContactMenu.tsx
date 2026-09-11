@@ -22,12 +22,13 @@ export function ContactLinks() {
   </>
 }
 
-export function ContactMenu({ activeSection }: { activeSection: string }) {
+export function ContactMenu({ activeSection, onNavigate }: { activeSection: string, onNavigate?: () => void }) {
   const goToContact = () => {
     const section = document.getElementById('contact')
     if (!section) return
     section.scrollIntoView({ behavior: 'smooth', block: 'start' })
     history.replaceState(null, '', '#contact')
+    onNavigate?.()
   }
 
   return <button

@@ -113,8 +113,10 @@ button:disabled { opacity: .35; cursor: default; }
   color: var(--nav-color);
   background: transparent;
 }
+.mobile-nav-toggle { display: none; }
+.navigation-items { display: contents; }
 :root[data-theme="dark"] .landing { background: var(--color-black); color: var(--color-grey-100); }
-.side-nav > a, .contact-trigger, .theme-toggle, .work-trigger, .work-submenu > a {
+.navigation-items > a, .contact-trigger, .theme-toggle, .work-trigger, .work-submenu > a {
   position: relative;
   display: flex;
   align-items: center;
@@ -170,9 +172,9 @@ button:disabled { opacity: .35; cursor: default; }
   text-align: right;
   white-space: nowrap;
 }
-.side-nav > a::before, .contact-trigger::before, .theme-toggle::before, .work-trigger::before, .work-submenu > a::before { content: ""; position: absolute; left: 0; bottom: 8px; width: 0; height: 1px; background: currentColor; transition: width var(--micro); }
-.side-nav > a[aria-current], .side-nav > a:hover, .contact-trigger[aria-current="location"], .contact-trigger:hover, .theme-toggle:hover, .work-trigger:hover, .work-trigger[aria-expanded="true"], .work-submenu > a:hover, .work-submenu > a[aria-current="location"] { color: var(--nav-color); }
-.side-nav > a[aria-current]::before, .side-nav > a:hover::before, .contact-trigger[aria-current="location"]::before, .contact-trigger:hover::before, .theme-toggle:hover::before, .work-trigger:hover::before, .work-trigger[aria-expanded="true"]::before, .work-submenu > a:hover::before, .work-submenu > a[aria-current="location"]::before { width: 18px; }
+.navigation-items > a::before, .contact-trigger::before, .theme-toggle::before, .work-trigger::before, .work-submenu > a::before { content: ""; position: absolute; left: 0; bottom: 8px; width: 0; height: 1px; background: currentColor; transition: width var(--micro); }
+.navigation-items > a[aria-current], .navigation-items > a:hover, .contact-trigger[aria-current="location"], .contact-trigger:hover, .theme-toggle:hover, .work-trigger:hover, .work-trigger[aria-expanded="true"], .work-submenu > a:hover, .work-submenu > a[aria-current="location"] { color: var(--nav-color); }
+.navigation-items > a[aria-current]::before, .navigation-items > a:hover::before, .contact-trigger[aria-current="location"]::before, .contact-trigger:hover::before, .theme-toggle:hover::before, .work-trigger:hover::before, .work-trigger[aria-expanded="true"]::before, .work-submenu > a:hover::before, .work-submenu > a[aria-current="location"]::before { width: 18px; }
 .contact-disclosure { position: relative; }
 .contact-trigger svg, .theme-toggle svg {
   width: 14px;
