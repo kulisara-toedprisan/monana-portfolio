@@ -13,7 +13,7 @@ function App() {
     <main id="main">
       <LandingSection activeSection={activeSection} />
       <AboutSection active={activeSection === 'about'} />
-      <ProjectsSection />
+      <ProjectsSection activeSection={activeSection} />
       <section id="contact" className="chapter dark contact" aria-labelledby="contact-title">
         <div className="chapter-inner">
           <p className="eyebrow">06 / Let's make something worth watching</p>

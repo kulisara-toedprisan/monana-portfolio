@@ -4,28 +4,38 @@ import type { KeyboardEvent as ReactKeyboardEvent, PointerEvent as ReactPointerE
 import { categories } from '../../data/content'
 import monalistProjects from '../../data/MonalistProject.js'
 import type { Category, Project } from '../../types'
+import { useMediaQuery } from '../../hooks/useMediaQuery'
 import { SectionHeading } from '../SectionHeading'
 import { ProjectDetails } from './ProjectDetails'
 import { ProjectMedia } from './ProjectMedia'
 
-export function ProjectsSection() {
-  return <>{categories.map(category => <CategoryProjectsSection key={category.id} category={category} />)}</>
+export function ProjectsSection({ activeSection }: { activeSection: string }) {
+  const useTouchPlaybackLifecycle = useMediaQuery('(max-width: 1180px) and (pointer: coarse)')
+  return <>{categories.map(category => <CategoryProjectsSection key={category.id} category={category} isActive={activeSection === category.id} useTouchPlaybackLifecycle={useTouchPlaybackLifecycle} />)}</>
 }
 
-function CategoryProjectsSection({ category }: { category: Category }) {
+function CategoryProjectsSection({ category, isActive, useTouchPlaybackLifecycle }: { category: Category; isActive: boolean; useTouchPlaybackLifecycle: boolean }) {
   const projects = monalistProjects.filter(project => project.category === category.id)
   const strip = useRef<HTMLDivElement>(null)
   const drag = useRef({ pointerId: 0, startX: 0, scrollLeft: 0, moved: false })
-  const [scroll, setScroll] = useState({ canScroll: false, atStart: true, atEnd: true })
+  const [scroll, setScroll] = useState({ canScroll: false, atStart: true, atEnd: true, activeIndex: 0 })
   const updateScrollState = useCallback(() => {
     const node = strip.current
     if (!node) return
     const canScroll = node.scrollWidth > node.clientWidth + 2
-    setScroll({
+    const cards = Array.from(node.querySelectorAll<HTMLElement>('.project-card'))
+    const activeIndex = cards.reduce((closest, card, index) => {
+      const distance = Math.abs(card.offsetLeft - node.offsetLeft - node.scrollLeft)
+      const closestDistance = Math.abs(cards[closest].offsetLeft - node.offsetLeft - node.scrollLeft)
+      return distance < closestDistance ? index : closest
+    }, 0)
+    const next = {
       canScroll,
       atStart: node.scrollLeft <= 2,
       atEnd: !canScroll || node.scrollLeft + node.clientWidth >= node.scrollWidth - 2,
-    })
+      activeIndex,
+    }
+    setScroll(current => current.canScroll === next.canScroll && current.atStart === next.atStart && current.atEnd === next.atEnd && current.activeIndex === next.activeIndex ? current : next)
   }, [])
   useEffect(() => {
     const node = strip.current
@@ -82,7 +92,7 @@ function CategoryProjectsSection({ category }: { category: Category }) {
       <div className="project-carousel" aria-label={`${category.label} projects`}>
         <button className="project-arrow" type="button" aria-label={`Previous ${category.label} project`} disabled={!scroll.canScroll || scroll.atStart} onClick={() => move(-1)}><ArrowLeft aria-hidden="true" /></button>
         <div ref={strip} className="project-strip" tabIndex={0} role="list" aria-label={`${category.label} horizontal project strip`} onKeyDown={keyScroll} onPointerDown={pointerDown} onPointerMove={pointerMove} onPointerUp={pointerUp} onPointerCancel={pointerUp} onClickCapture={event => { if (drag.current.moved) { event.preventDefault(); event.stopPropagation(); drag.current.moved = false } }}>
-          {projects.map((project, index) => <ProjectCard key={project.id} project={project} index={index} />)}
+          {projects.map((project, index) => <ProjectCard key={project.id} project={project} index={index} mediaActive={!useTouchPlaybackLifecycle || (isActive && index === scroll.activeIndex)} useTouchPlaybackLifecycle={useTouchPlaybackLifecycle} />)}
         </div>
         <button className="project-arrow" type="button" aria-label={`Next ${category.label} project`} disabled={!scroll.canScroll || scroll.atEnd} onClick={() => move(1)}><ArrowRight aria-hidden="true" /></button>
       </div>
@@ -90,10 +100,10 @@ function CategoryProjectsSection({ category }: { category: Category }) {
   </section>
 }
 
-function ProjectCard({ project, index }: { project: Project; index: number }) {
+function ProjectCard({ project, index, mediaActive, useTouchPlaybackLifecycle }: { project: Project; index: number; mediaActive: boolean; useTouchPlaybackLifecycle: boolean }) {
   return <article className="project-card" role="listitem" aria-labelledby={'title-' + project.id}>
     <p className="project-index">PROJECT {String(index + 1).padStart(2, '0')}</p>
-    <ProjectMedia project={project} />
+    <ProjectMedia project={project} isActive={mediaActive} useTouchPlaybackLifecycle={useTouchPlaybackLifecycle} />
     <h3 id={'title-' + project.id}>{project.title}</h3>
     <ProjectDetails project={project} />
   </article>

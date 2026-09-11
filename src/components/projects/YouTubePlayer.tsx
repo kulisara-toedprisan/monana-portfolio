@@ -5,9 +5,10 @@ interface YouTubeApi {
   Player: new (element: HTMLElement, options: {
     videoId: string
     playerVars: Record<string, string | number>
-    events: { onReady: (event: { target: { getIframe: () => HTMLIFrameElement } }) => void; onError: () => void }
+    events: { onReady: (event: { target: { getIframe: () => HTMLIFrameElement; pauseVideo: () => void } }) => void; onError: () => void }
   }) => { destroy: () => void; mute: () => void; playVideo: () => void; pauseVideo: () => void; getIframe: () => HTMLIFrameElement }
 }
+type YouTubePlayerInstance = { destroy: () => void; mute: () => void; playVideo: () => void; pauseVideo: () => void; getIframe: () => HTMLIFrameElement }
 declare global {
   interface Window { YT?: YouTubeApi; onYouTubeIframeAPIReady?: () => void }
 }
@@ -37,9 +38,16 @@ function loadApi() {
   return apiPromise
 }
 
-export function YouTubePlayer({ project }: { project: Project }) {
+export function YouTubePlayer({ project, isActive, useTouchPlaybackLifecycle }: { project: Project; isActive: boolean; useTouchPlaybackLifecycle: boolean }) {
   const host = useRef<HTMLDivElement>(null)
+  const player = useRef<YouTubePlayerInstance | null>(null)
+  const active = useRef(isActive)
   const [error, setError] = useState(false)
+
+  useEffect(() => {
+    active.current = isActive
+    if (useTouchPlaybackLifecycle && !isActive) player.current?.pauseVideo()
+  }, [isActive, useTouchPlaybackLifecycle])
 
   useEffect(() => {
     const container = host.current
@@ -49,7 +57,7 @@ export function YouTubePlayer({ project }: { project: Project }) {
       if (disposed) return
       const mount = document.createElement('div')
       container.append(mount)
-      const player = new api.Player(mount, {
+      player.current = new api.Player(mount, {
         videoId: project.videoId || project.embedUrl.split('/').pop() || '',
         playerVars: { autoplay: 0, playsinline: 1, controls: 1, rel: 0, origin: window.location.origin },
         events: {
@@ -65,19 +73,19 @@ export function YouTubePlayer({ project }: { project: Project }) {
             iframe.style.border = '0'
             iframe.style.position = 'absolute'
             iframe.style.inset = '0'
+            if (useTouchPlaybackLifecycle && !active.current) event.target.pauseVideo()
           },
           onError: () => { if (!disposed) setError(true) },
         },
       })
-      return () => {
-        player.destroy()
-      }
     }).catch(() => { if (!disposed) setError(true) })
     return () => {
       disposed = true
+      player.current?.destroy()
+      player.current = null
       container.replaceChildren()
     }
-  }, [project])
+  }, [project, useTouchPlaybackLifecycle])
 
   return <>{error && <p className="player-error" role="status">This preview is unavailable. Use “View on YouTube” below.</p>}<div className="youtube-host" ref={host} /></>
 }
