@@ -1,11 +1,13 @@
 @media (max-width: 1023px) {
   .landing { min-height: max(720px, 100svh); }
   .landing-inner {
+    --hero-group-y: clamp(4rem, 10svh, 6rem);
     --hero-title-top: clamp(16rem, 28vh, 22rem);
     --hero-portrait-top: clamp(1rem, 4vh, 3rem);
     --hero-portrait-width: clamp(17rem, 48vw, 30rem);
     --hero-portrait-height: clamp(22rem, 62svh, 44rem);
   }
+  .hero-composition { transform: translate3d(0, var(--hero-group-y), 0); }
   .portrait { width: var(--hero-portrait-width); height: var(--hero-portrait-height); }
   .side-nav { right: clamp(1rem, 2vw, 2.5rem); top: clamp(4.5rem, 9vh, 7.5rem); }
   .project-card { flex-basis: calc((100% - 24px) / 2); }
@@ -20,6 +22,10 @@
 @media (max-width: 767px) {
   .hero-title-wrap { padding-inline: 0; }
   .hero-title-wrap > .landing-title { font-size: clamp(2.5rem, 14.5vw, 7rem); letter-spacing: -.07em; }
+  .project-strip { --project-gap: 20px; }
+}
+@media (max-width: 480px) {
+  .landing-inner { --hero-group-y: clamp(6rem, 18svh, 10.5rem); }
   .side-nav {
     position: fixed;
     top: 16px;
@@ -123,7 +129,6 @@
   }
   .work-submenu > a:nth-child(2) { order: 3; }
   .work-submenu > a:nth-child(3) { order: 2; }
-  .project-strip { --project-gap: 20px; }
 }
 @media (max-width: 600px) {
   :root { --gutter: 20px; }
@@ -137,7 +142,7 @@
     --hero-mask-y-offset: 0px;
     min-height: inherit; display: flex; flex-direction: column;
   }
-  .landing-header { top: 20px; padding-left: 52px; }
+  .landing-header { top: 20px; }
   .landing-header .eyebrow { font-size: 10px; max-width: 140px; }
   .logo { font-size: 20px; }
   .portrait { top: var(--hero-portrait-top); left: 50%; width: var(--hero-portrait-width); height: var(--hero-portrait-height); }
@@ -166,6 +171,13 @@
   .side-nav { left: 12px; width: calc(100% - 24px); }
   .navigation-items, .work-submenu { gap: 0 12px; padding-inline: 10px; }
   .hero-title-wrap > .landing-title { font-size: clamp(2.4rem, 14vw, 3.25rem); letter-spacing: -.065em; }
+}
+@media (max-width: 480px) {
+  .landing-header { padding-left: 52px; }
+}
+@media (min-width: 1024px) and (max-width: 1180px) and (orientation: landscape) and (pointer: coarse) {
+  .landing-inner { --hero-group-y: 16px; }
+  .hero-composition { transform: translate3d(0, var(--hero-group-y), 0); }
 }
 @media (min-width: 1920px) {
   .landing-title { font-size: 280px; }

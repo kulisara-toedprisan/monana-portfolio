@@ -8,11 +8,13 @@ export function LandingSection({ activeSection }: { activeSection: string }) {
   return <section id="home" className="chapter landing" aria-labelledby="landing-title" style={{ ['--portfolio-mask' as string]: `url(${portfolioMask})` }}>
     <div className="chapter-inner landing-inner">
       <header className="landing-header"><LogoMark /><p className="eyebrow">Video editor /<br />Content creator</p></header>
-      <div className="hero-title-wrap">
-        <h1 className="landing-title landing-title--base" id="landing-title">PORTFOLIO</h1>
-        <h1 className="landing-title landing-title--contrast" aria-hidden="true">PORTFOLIO</h1>
+      <div className="hero-composition">
+        <div className="hero-title-wrap">
+          <h1 className="landing-title landing-title--base" id="landing-title">PORTFOLIO</h1>
+          <h1 className="landing-title landing-title--contrast" aria-hidden="true">PORTFOLIO</h1>
+        </div>
+        <LandingPortrait />
       </div>
-      <LandingPortrait />
       <SideNavigation activeSection={activeSection} />
       <div className="landing-footer">
         <p>A good story.<br />A better cut.</p>

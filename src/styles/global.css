@@ -50,7 +50,7 @@ button:disabled { opacity: .35; cursor: default; }
 .landing { min-height: max(740px, 100svh); padding-block: 0; overflow: visible; background: var(--hero-bg); }
 .landing-inner {
   --hero-portrait-top: clamp(1.5rem, 4vh, 4rem);
-  --hero-title-top: clamp(18.5rem, 27vh, 25rem);
+  --hero-title-top: clamp(23rem, 27vh, 25rem);
   --hero-title-width: min(100%, 1520px);
   --hero-portrait-width: clamp(18rem, 26vw, 34rem);
   --hero-portrait-height: clamp(24rem, 62svh, 66rem);
@@ -58,10 +58,12 @@ button:disabled { opacity: .35; cursor: default; }
   --hero-mask-height: min(var(--hero-portrait-height), calc(var(--hero-portrait-width) / .75));
   --hero-mask-y-offset: calc((var(--hero-portrait-height) - var(--hero-mask-height)) / 2);
   --hero-horizontal-pad: clamp(20px, 4vw, 72px);
+  --hero-group-y: 0px;
   position: relative; min-height: inherit; overflow: visible;
 }
 .landing-header { position: absolute; inset: 28px 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 24px; z-index: 8; }
 .landing-header .eyebrow { text-align: right; }
+.hero-composition { position: absolute; inset: 0; pointer-events: none; }
 .hero-title-wrap {
   position: absolute;
   inset: var(--hero-title-top) 0 auto 0;
