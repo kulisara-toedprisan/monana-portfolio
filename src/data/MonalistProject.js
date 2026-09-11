@@ -65,7 +65,7 @@ const monalistProjects = [
     embedUrl: 'https://www.youtube.com/embed/5Em9WTC7-u4',
     videoSrc: '',
     description: 'A festive travel vlog exploring Toronto\'s Christmas Market — food, atmosphere, and little comedic beats woven into the storytelling, set to seasonal music that keeps the mood warm and playful.',
-    software: ['CapCut','Adobe Premiere Pro'],
+    software: ['Adobe Premiere Pro'],
     tools: ['Talking-head intro', 'B-roll storytelling', 'Comedic timing', 'Music/sound design', 'Pacing'],
   },
   {
