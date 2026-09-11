@@ -1,16 +1,7 @@
 import { ArrowUpRight } from 'lucide-react'
+import type { ReactNode } from 'react'
 
-interface ButtonProps {
-  href: string
-  children: React.ReactNode
-  variant?: 'primary' | 'secondary' | 'dark'
-  showIcon?: boolean
-}
-
-export function Button({ href, children, variant = 'primary', showIcon = false }: ButtonProps) {
-  return (
-    <a className={`button button--${variant}`} href={href}>
-      <span>{children}</span>{showIcon && <ArrowUpRight aria-hidden="true" size={18} />}
-    </a>
-  )
+interface ButtonProps { href: string; children: ReactNode; showIcon?: boolean }
+export function Button({ href, children, showIcon = false }: ButtonProps) {
+  return <a className="button" href={href}>{children}{showIcon && <ArrowUpRight aria-hidden="true" />}</a>
 }

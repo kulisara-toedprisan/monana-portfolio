@@ -1,16 +1,13 @@
-@keyframes reveal { from { opacity: 0; transform: translateY(1.5rem); } to { opacity: 1; transform: none; } }
-@keyframes float { 0%, 100% { transform: translateY(0) rotate(-1deg); } 50% { transform: translateY(-.8rem) rotate(1deg); } }
-@keyframes orbit { to { transform: rotate(360deg); } }
-@keyframes marquee { to { transform: translateX(-50%); } }
-.reveal { animation: reveal .7s cubic-bezier(.2,.8,.2,1) both; }
-.reveal--delay { animation-delay: .16s; }
-.reveal--delay-2 { animation-delay: .3s; }
-.hero__art img { animation: float 6s ease-in-out infinite; }
-.orbit--one { animation: orbit 12s linear infinite; }
-.marquee > div { animation: marquee 22s linear infinite; }
-.marquee:hover > div { animation-play-state: paused; }
+@keyframes enter { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+@keyframes nudge { 0%, 100% { opacity: .55; transform: translateX(0); } 50% { opacity: 1; transform: translateX(6px); } }
+.contact-menu:not([hidden]) { animation: enter 350ms var(--ease); }
+.project-card { animation: enter 350ms var(--ease); }
+.about-content { opacity: .65; transform: translateY(18px); transition: opacity 650ms var(--ease), transform 650ms var(--ease); }
+.about.is-active .about-content { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
-  .reveal { opacity: 1; transform: none; }
+  html { scroll-behavior: auto; scroll-snap-type: y proximity; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .about-content { opacity: 1; transform: none; }
+  .portrait img { transform: none !important; filter: grayscale(1) !important; }
+  .video-cover img, .project-card:hover .media-stage { transform: none !important; }
 }

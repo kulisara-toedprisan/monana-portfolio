@@ -1,0 +1,21 @@
+import { ArrowDown } from 'lucide-react'
+import { LogoMark } from '../LogoMark'
+import { LandingPortrait } from './LandingPortrait'
+import { SideNavigation } from './SideNavigation'
+
+export function LandingSection({ activeSection }: { activeSection: string }) {
+  return <section id="home" className="chapter landing" aria-labelledby="landing-title">
+    <div className="chapter-inner landing-inner">
+      <header className="landing-header"><LogoMark /><p className="eyebrow">Video editor /<br />Content creator</p></header>
+      <div className="hero-title-wrap">
+        <h1 className="landing-title" id="landing-title">PORTFOLIO</h1>
+      </div>
+      <LandingPortrait />
+      <SideNavigation activeSection={activeSection} />
+      <div className="landing-footer">
+        <p>A good story.<br />A better cut.</p>
+        <a className="scroll-link" href="#about">Scroll to meet Mona <ArrowDown aria-hidden="true" /></a>
+      </div>
+    </div>
+  </section>
+}

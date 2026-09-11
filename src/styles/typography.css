@@ -1,8 +1,7 @@
-body { font-family: var(--font-body); color: var(--ink); font-size: clamp(.95rem, .25vw + .9rem, 1.08rem); line-height: 1.5; }
+body { font: 16px/1.65 var(--font-body); color: var(--color-black); }
 h1, h2, h3, p { margin: 0; }
-h1, h2, h3 { font-family: var(--font-display); font-weight: 700; }
-h1 { font-size: clamp(2.55rem, 5.2vw, 5.9rem); line-height: .84; letter-spacing: -.055em; }
-h2 { font-size: clamp(2.7rem, 6.5vw, 7.4rem); line-height: .84; letter-spacing: -.055em; }
-h3 { font-size: clamp(1.45rem, 2.2vw, 2.25rem); line-height: 1; }
-em { color: var(--signal); font-style: normal; }
-.eyebrow { font-family: var(--font-mono); font-size: .77rem; font-weight: 700; letter-spacing: .08em; }
+h1, h2, h3 { font-family: var(--font-display); }
+h1, h2 { font-weight: 900; letter-spacing: -.065em; line-height: .95; }
+h2 { font-size: clamp(3rem, 7.5vw, 8rem); }
+h3 { font-size: clamp(2rem, 3.5vw, 3.5rem); line-height: 1.05; letter-spacing: -.045em; }
+.eyebrow { font: 12px/1.5 var(--font-mono); letter-spacing: .09em; text-transform: uppercase; }

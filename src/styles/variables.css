@@ -1,21 +1,25 @@
 :root {
-  --ink: #11110f;
-  --ink-soft: #3f403c;
-  --paper: #eeede8;
-  --panel: #d7d8d4;
-  --panel-light: #e5e6e2;
-  --line: rgb(17 17 15 / 16%);
-  --signal: #ff5a18;
-  --signal-light: #ff8a24;
-  --cream: #fffaf0;
-  --white: #fff;
-  --font-display: "Arial Narrow", "Roboto Condensed", Arial, sans-serif;
-  --font-body: Inter, "Avenir Next", "Segoe UI", "Helvetica Neue", sans-serif;
-  --font-mono: "Courier New", "Lucida Console", monospace;
-  --gutter: clamp(0.75rem, 4vw, 4.5rem);
-  --section-space: clamp(5rem, 10vw, 10rem);
-  --radius-sm: 0.4rem;
-  --radius-md: 0.9rem;
-  --radius-lg: 1.4rem;
-  --max-width: 100rem;
+  --color-black: #0a0a0a;
+  --color-dark: #161616;
+  --color-grey-900: #242424;
+  --color-grey-700: #555555;
+  --color-grey-500: #888888;
+  --color-grey-300: #c8c8c8;
+  --color-grey-100: #eeeeee;
+  --color-white: #ffffff;
+  --font-display: Arial, "Helvetica Neue", sans-serif;
+  --font-body: Arial, Helvetica, sans-serif;
+  --font-mono: "Courier New", monospace;
+  --gutter: clamp(24px, 5vw, 96px);
+  --max-width: 1600px;
+  --ease: cubic-bezier(.22, 1, .36, 1);
+  --micro: 200ms;
+  --transition: 350ms;
+  --nav-backdrop: rgba(255, 255, 255, .86);
+  --dialog-backdrop: rgba(10, 10, 10, .42);
+}
+
+:root[data-theme="dark"] {
+  --nav-backdrop: rgba(10, 10, 10, .8);
+  --dialog-backdrop: rgba(238, 238, 238, .18);
 }
