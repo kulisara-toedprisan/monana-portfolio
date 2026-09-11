@@ -135,7 +135,7 @@
   .chapter { padding-block: 64px; }
   .landing { padding-block: 0; min-height: max(568px, 100svh); }
   .landing-inner {
-    --hero-title-top: clamp(16rem, 23vh, 18rem);
+    --hero-title-top: clamp(15rem, 23vh, 18rem);
     --hero-portrait-top: clamp(0.8rem, 3vh, 2.5rem);
     --hero-portrait-width: clamp(14rem, 64vw, 21rem);
     --hero-portrait-height: clamp(18rem, 52svh, 30rem);
