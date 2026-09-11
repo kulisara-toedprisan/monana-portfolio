@@ -20,7 +20,7 @@ export function LandingPortrait() {
     const tick = () => {
       current += (target - current) * .09
       if (Math.abs(target - current) < .01) current = target
-      img.style.transform = `translate3d(${current}px, 0, 0)`
+      section.style.setProperty('--portrait-shift', `${current}px`)
       img.style.filter = `grayscale(${1 - Math.abs(current) / 26 * .8})`
       frame = current !== target ? requestAnimationFrame(tick) : 0
     }
@@ -38,7 +38,7 @@ export function LandingPortrait() {
       cancelAnimationFrame(frame)
       frame = 0
       current = target = 0
-      img.style.transform = 'translate3d(0, 0, 0)'
+      section.style.setProperty('--portrait-shift', '0px')
       img.style.filter = 'grayscale(1)'
     }
     section.addEventListener('pointermove', move)

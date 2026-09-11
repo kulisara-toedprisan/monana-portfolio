@@ -3,8 +3,10 @@
   .landing-inner {
     --hero-title-top: clamp(16rem, 28vh, 22rem);
     --hero-portrait-top: clamp(1rem, 4vh, 3rem);
+    --hero-portrait-width: clamp(17rem, 48vw, 30rem);
+    --hero-portrait-height: clamp(22rem, 62svh, 44rem);
   }
-  .portrait { width: clamp(17rem, 48vw, 30rem); height: clamp(22rem, 62svh, 44rem); }
+  .portrait { width: var(--hero-portrait-width); height: var(--hero-portrait-height); }
   .side-nav { right: clamp(1rem, 2vw, 2.5rem); top: clamp(4.5rem, 9vh, 7.5rem); }
   .project-card { flex-basis: calc((100% - 24px) / 2); }
   .project-carousel { display: block; position: relative; }
@@ -25,6 +27,9 @@
   .landing-inner {
     --hero-title-top: clamp(14rem, 23vh, 18rem);
     --hero-portrait-top: clamp(0.8rem, 3vh, 2.5rem);
+    --hero-portrait-width: clamp(14rem, 64vw, 21rem);
+    --hero-portrait-height: clamp(18rem, 52svh, 30rem);
+    --hero-mask-y-offset: 0px;
     min-height: inherit; display: flex; flex-direction: column;
   }
   .landing-header { top: 20px; }
@@ -32,7 +37,7 @@
   .logo { font-size: 20px; }
   .hero-title-wrap { padding-inline: 20px; }
   .landing-title { font-size: clamp(3.2rem, 18vw, 9.5rem); }
-  .portrait { top: var(--hero-portrait-top); left: 50%; width: clamp(14rem, 64vw, 21rem); height: clamp(18rem, 52svh, 30rem); }
+  .portrait { top: var(--hero-portrait-top); left: 50%; width: var(--hero-portrait-width); height: var(--hero-portrait-height); }
   .portrait img { object-position: center top; }
   .side-nav { position: relative; left: auto; right: auto; top: auto; width: 100%; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; margin-top: clamp(18rem, 44svh, 27rem); padding-bottom: 104px; background: transparent; }
   .side-nav > a, .contact-trigger, .theme-toggle { font-size: 14px; padding-inline: 6px; background: transparent; }
