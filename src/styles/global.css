@@ -5,11 +5,15 @@ body { margin: 0; background: var(--color-grey-100); }
   --nav-color: #000000;
   --hero-bg: var(--color-grey-100);
   --portfolio-base: var(--color-black);
+  --section-two-bg: var(--color-black);
+  --section-two-text: var(--color-grey-100);
 }
 :root[data-theme="dark"] {
   --nav-color: #ffffff;
   --hero-bg: var(--color-black);
   --portfolio-base: var(--color-grey-100);
+  --section-two-bg: var(--color-grey-100);
+  --section-two-text: var(--color-black);
 }
 :root[data-theme="dark"] body { background: var(--color-black); color: var(--color-grey-100); }
 button, a { -webkit-tap-highlight-color: transparent; }
@@ -217,10 +221,11 @@ button:disabled { opacity: .35; cursor: default; }
 .project-external { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; margin-top: 6px; font-size: 14px; }
 .player-error { position: absolute; inset: auto 12px 12px; z-index: 3; margin: 0; padding: 8px; background: rgba(255,255,255,.92); color: var(--color-black); font-size: 13px; }
 .project-details { margin: 0; }
-.project-details dt { font: 12px var(--font-mono); letter-spacing: .08em; margin-top: 22px; }
-.project-details dd { margin: 8px 0 0; color: var(--color-grey-700); font-size: 15px; line-height: 1.6; }
+.project-details dt { font: 700 14px var(--font-mono); letter-spacing: .08em; margin-top: 22px; }
+.project-details dd { margin: 8px 0 0; color: var(--color-grey-700); font-size: 15px; font-weight: 400; line-height: 1.6; }
 :root[data-theme="dark"] .project-details dd { color: var(--color-grey-300); }
-.project-details ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 4px 16px; }
+.project-details ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.project-details li { padding: 4px 10px; background: var(--section-two-bg); color: var(--section-two-text); border-radius: 999px; }
 .contact { display: flex; align-items: center; }
 .contact h2 { max-width: 1000px; margin-block: 40px; }
 .contact-email { display: inline-flex; align-items: center; gap: 16px; font-size: clamp(17px, 3vw, 40px); min-height: 48px; border-bottom: 1px solid currentColor; overflow-wrap: anywhere; }
